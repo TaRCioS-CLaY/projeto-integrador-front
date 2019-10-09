@@ -1,29 +1,26 @@
-# projeto-integrador
+# Projeto Integrador 2019.2 - UNICARIOCA - Rio Comprido
 
-## Project setup
+## Instalar dependencias do projeto
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Hot-reloads para desenvolvimento
 ```
 yarn run serve
 ```
 
-### Compiles and minifies for production
+### Compilar e minificar para produção
 ```
 yarn run build
 ```
 
-### Run your tests
+### Rodar Testes
 ```
 yarn run test
 ```
 
-### Lints and fixes files
+### Procurar por erros nos arquivos
 ```
 yarn run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

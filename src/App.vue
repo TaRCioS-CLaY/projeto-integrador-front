@@ -1,18 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div class="container">
+  <b-navbar>
+    <b-navbar-brand href="#">Projeto Integrador</b-navbar-brand>
+  </b-navbar>
+  <b-form-select size="sm" v-model="selecionado" :options="options"></b-form-select>
+  <div>
+    {{selecionado}}
   </div>
+   <b-table  striped hover :items="items"></b-table>
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
+  data() {
+    return {
+      selecionado: null,
+      items: [
+        { Data: 40, credenciado: 'José', Consulta: 'Odonto', valor: 'Macdonald' },
+        { Data: 21, credenciado: 'Raul', Consulta: 'Podologo', valor: 'Shaw' },
+        { Data: 89, credenciado: 'Maria', Consulta: 'Geral', valor: 'Wilson' },
+        { Data: 38, credenciado: 'José', Consulta: 'Odonto', valor: 'Carney' },
+      ],
+      options: [
+        {value: 'joao', text: 'João'},
+        {value: 'maria', text: 'Maria'},
+        {value: 'jose', text: 'José'},
+        {value: 'pedro', text: 'Pedro'},
+      ],
+      show: true
+    }
+  },
+  methods: {
+  },
 }
 </script>
 
