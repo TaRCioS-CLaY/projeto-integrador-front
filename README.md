@@ -1,26 +1,32 @@
-# Projeto Integrador 2019.2 - UNICARIOCA - Rio Comprido
+# Projeto Integrador - 2019.2 - UNICARIOCA
+### Instruções para rodar o projeto
+1. Clone este repositório
+2. Execute ``yarn install`` dentro da pasta clonada e aguarde a instalação das dependências
+3. Execute ``yarn serve`` para levantar o servidor
+4. Abra o navegador e acesse http://localhost:8080
 
-## Instalar dependencias do projeto
+## Comandos úteis 
+#### Instalar dependências do projeto
 ```
 yarn install
 ```
 
-### Hot-reloads para desenvolvimento
+#### Hot-reloads para desenvolvimento
 ```
-yarn run serve
-```
-
-### Compilar e minificar para produção
-```
-yarn run build
+yarn serve
 ```
 
-### Rodar Testes
+#### Compilar e minificar para produção
 ```
-yarn run test
+yarn build
 ```
 
-### Procurar por erros nos arquivos
+#### Rodar Testes
 ```
-yarn run lint
+yarn test
+```
+
+#### Procurar por erros nos arquivos
+```
+yarn lint
 ```
