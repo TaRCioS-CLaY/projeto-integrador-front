@@ -9,7 +9,7 @@
   </b-navbar>
   <div><br></div>
   <b-jumbotron  lead="Demonstrativo de Despesas">
-    <b-form-group id="input-group-2" label="Credenciado:" label-for="input-2">
+    <b-form-group id="input-group-2" label="Beneficiário:" label-for="input-2">
     <b-form-select
       size="sm"
       v-model="selecionado"
@@ -29,12 +29,12 @@
             <b-form-input id="input-1" v-model="form.data" type="date" required></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-2" label="Credenciado:" label-for="input-2">
+          <b-form-group id="input-group-2" label="Beneficiário:" label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="form.credenciado"
+              v-model="form.beneficiario"
               required
-              placeholder="Insira o nome do credenciado"
+              placeholder="Insira o nome do beneficiário"
             ></b-form-input>
           </b-form-group>
 
@@ -60,18 +60,16 @@
 </template>
 
 <script>
-import moment from "moment";
 import TabelaDemonstrativo from "./components/TabelaDemonstrativo";
 
 export default {
   name: "app",
   data() {
     return {
-      dataBr: new moment().locale("pt-br"),
       selecionado: null,
       form: {
         data: "",
-        credenciado: "",
+        beneficiario: "",
         consulta: "",
         valor: null
       },
@@ -93,21 +91,21 @@ export default {
       joao: {
         despesas: [
           {
-            Data: "2019-05-13",
-            credenciado: "Raul",
-            Consulta: "Podologo",
+            data: "2019-05-13",
+            beneficiario: "Raul",
+            consulta: "Podologo",
             valor: 100
           },
           {
-            Data: "2019-12-05",
-            credenciado: "Betina",
-            Consulta: "Geral",
+            data: "2019-12-05",
+            beneficiario: "Betina",
+            consulta: "Geral",
             valor: 50
           },
           {
-            Data: "2019-11-10",
-            credenciado: "José",
-            Consulta: "Odonto",
+            data: "2019-11-10",
+            beneficiario: "José",
+            consulta: "Odonto",
             valor: 60
           }
         ]
@@ -115,21 +113,21 @@ export default {
       maria: {
         despesas: [
           {
-            Data: "2019-05-13",
-            credenciado: "Raiane",
-            Consulta: "Geral",
+            data: "2019-05-13",
+            beneficiario: "Raiane",
+            consulta: "Geral",
             valor: 70
           },
           {
-            Data: "2019-02-15",
-            credenciado: "Carla",
-            Consulta: "Podologo",
+            data: "2019-02-15",
+            beneficiario: "Carla",
+            consulta: "Podologo",
             valor: 30
           },
           {
-            Data: "2019-10-06",
-            credenciado: "Diana",
-            Consulta: "Odonto",
+            data: "2019-10-06",
+            beneficiario: "Diana",
+            consulta: "Odonto",
             valor: 300
           }
         ]
@@ -163,7 +161,7 @@ export default {
       evt.preventDefault();
       // Reset our form values
       this.form.data = "";
-      this.form.credenciado = "";
+      this.form.beneficiario = "";
       this.form.consulta = "";
       this.form.valor = null;
       // Trick to reset/clear native browser form validation state
