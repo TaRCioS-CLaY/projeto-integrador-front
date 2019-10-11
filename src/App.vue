@@ -1,11 +1,25 @@
 <template>
+
   <b-container>
-    <b-navbar>
-      <b-navbar-brand href="#">Projeto Integrador</b-navbar-brand>
-    </b-navbar>
-    <b-form-select size="sm" v-model="selecionado" :options="options"></b-form-select>
-    <div>{{selecionado}}</div>
-    <b-table striped hover :items="items"></b-table>
+  <b-navbar type="dark" variant="info">
+    
+    <b-navbar-nav>
+      <b-nav-item href="#">Home</b-nav-item>
+    </b-navbar-nav>
+  </b-navbar>
+  <div><br></div>
+  <b-jumbotron  lead="Demonstrativo de Despesas">
+    <b-form-group id="input-group-2" label="Credenciado:" label-for="input-2">
+    <b-form-select
+      size="sm"
+      v-model="selecionado"
+      @change="listarDespesas(selecionado)"
+      :options="options"
+    ></b-form-select>
+    </b-form-group>
+  
+    <TabelaDemonstrativo :items="items"></TabelaDemonstrativo>
+</b-jumbotron>
 
     <b-button size="sm" v-b-toggle.formTabela>Testar Tabela</b-button>
     <b-collapse id="formTabela" class="mt-2">
@@ -29,11 +43,13 @@
           </b-form-group>
 
           <b-form-group id="input-group-4" label="Valor:">
-            <b-form-input v-model="form.valor" id="input-4" type="number" required></b-form-input>
+            <b-input-group  prepend="R$">
+<b-form-input v-model="form.valor" id="input-4" type="number" required></b-form-input>
+            </b-input-group>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Submit</b-button>
-          <b-button type="reset" variant="danger">Reset</b-button>
+          <b-button type="submit" variant="primary">Enviar</b-button>
+          <b-button type="reset" variant="danger">Limpar</b-button>
         </b-form>
         <b-card class="mt-3" header="Resultado do Form">
           <pre class="m-0">{{ form }}</pre>
@@ -45,6 +61,7 @@
 
 <script>
 import moment from "moment";
+import TabelaDemonstrativo from "./components/TabelaDemonstrativo";
 
 export default {
   name: "app",
@@ -55,7 +72,7 @@ export default {
       form: {
         data: "",
         credenciado: "",
-        consulta: null,
+        consulta: "",
         valor: null
       },
       consultas: [
@@ -65,40 +82,79 @@ export default {
         "Geral",
         "Oftamologista"
       ],
-      show: true,
-      items: [
-        // { Data: 40, credenciado: 'José', Consulta: 'Odonto', valor: 'Macdonald' },
-        // { Data: 21, credenciado: 'Raul', Consulta: 'Podologo', valor: 'Shaw' },
-        // { Data: 89, credenciado: 'Maria', Consulta: 'Geral', valor: 'Wilson' },
-        // { Data: 38, credenciado: 'José', Consulta: 'Odonto', valor: 'Carney' },
-      ],
+      items: [],
       options: [
         { value: "joao", text: "João" },
         { value: "maria", text: "Maria" },
-        { value: "jose", text: "José" },
-        { value: "pedro", text: "Pedro" }
       ],
       showCollapse: true,
-      show: true
+      show: true,
+      //Valores Mock
+      joao: {
+        despesas: [
+          {
+            Data: "2019-05-13",
+            credenciado: "Raul",
+            Consulta: "Podologo",
+            valor: 100
+          },
+          {
+            Data: "2019-12-05",
+            credenciado: "Betina",
+            Consulta: "Geral",
+            valor: 50
+          },
+          {
+            Data: "2019-11-10",
+            credenciado: "José",
+            Consulta: "Odonto",
+            valor: 60
+          }
+        ]
+      },
+      maria: {
+        despesas: [
+          {
+            Data: "2019-05-13",
+            credenciado: "Raiane",
+            Consulta: "Geral",
+            valor: 70
+          },
+          {
+            Data: "2019-02-15",
+            credenciado: "Carla",
+            Consulta: "Podologo",
+            valor: 30
+          },
+          {
+            Data: "2019-10-06",
+            credenciado: "Diana",
+            Consulta: "Odonto",
+            valor: 300
+          }
+        ]
+      }
     };
   },
   methods: {
-    moment: function() {
-      return moment();
-    },
     onSubmit(evt) {
       evt.preventDefault();
-      let itemTabela = {
-        data: this.form.data,
-        credenciado: this.form.credenciado,
-        consulta: this.form.consulta,
-        valor: this.form.valor
-      };
-      this.salvarNaTabela(itemTabela);
+      this.salvarNaTabela(JSON.parse(JSON.stringify(this.form)));
+
+      alert(JSON.parse(JSON.stringify(this.form)));
       this.onReset(evt);
-      console.log(this.items);
-      alert(JSON.stringify(itemTabela));
-      this.onReset(evt);
+    },
+    listarDespesas(pessoa) {
+      this.items = [];
+      this.pegarDespesas(pessoa).map(e => this.items.push(e));
+    },
+    pegarDespesas(pessoa) {
+      switch (pessoa) {
+        case 'maria':
+          return this.maria.despesas;
+        case 'joao':
+          return this.joao.despesas;
+      }
     },
     salvarNaTabela(item) {
       this.items.push(item);
@@ -106,9 +162,9 @@ export default {
     onReset(evt) {
       evt.preventDefault();
       // Reset our form values
-      this.form.data = moment().format('dddd')
+      this.form.data = "";
       this.form.credenciado = "";
-      this.form.consulta = null;
+      this.form.consulta = "";
       this.form.valor = null;
       // Trick to reset/clear native browser form validation state
       this.show = false;
@@ -116,6 +172,9 @@ export default {
         this.show = true;
       });
     }
+  },
+  components: {
+    TabelaDemonstrativo
   }
 };
 </script>
