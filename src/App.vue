@@ -63,7 +63,7 @@
 import TabelaDemonstrativo from './components/TabelaDemonstrativo';
 
 import { pegarBeneficiarios } from './services/beneficiarios.service';
-import { pegarDemonstrativosPorId } from './services/demonstrativos.service';
+import { pegarDespesasPorId } from './services/demonstrativos.service';
 
 export default {
   name: "app",
@@ -147,7 +147,7 @@ export default {
     },
     listarDespesas(pessoa) {
       this.items = [];
-      pegarDemonstrativosPorId(pessoa).then((dados) => dados.map(e => this.items.push(e)));
+      pegarDespesasPorId(pessoa).then((dados) => dados.map(e => this.items.push(e)));
     },
     pegarDespesas(pessoa) {
       switch (pessoa) {

@@ -2,11 +2,11 @@ import axios from 'axios';
 import { trocarValorKey } from './utils.service';
 
 /**
- * Pega todos os demonstrativos da base
- * @returns {Promise} Uma Promise com um array de demontratativos
+ * Pega todas as despesas da base
+ * @returns {Promise} Uma Promise com um array de despesas
  */
-export function pegarTodosDemonstrativos(){
-    return axios.get('http://localhost:3333/demonstrativos').then((dados) => {
+export function pegarTodasDespesas(){
+    return axios.get('http://localhost:3333/despesas').then((dados) => {
       const array = dados.data.map((e) => {
         e = trocarValorKey('dt_atendimento', 'data', e);
         e = trocarValorKey('ds_credenciado', 'beneficiario', e);
@@ -19,12 +19,12 @@ export function pegarTodosDemonstrativos(){
   }
 
 /**
- * Pega o demonstrativo do beneficiário dono do Id passado
+ * Pega as despesas do beneficiário dono do Id passado
  * @param {string} id Id do beneficiário
- * @returns {Promise} Uma Promise com um array de demontratativos
+ * @returns {Promise} Uma Promise com um array de despesas
  */
-export function pegarDemonstrativosPorId(id){
-    return axios.get('http://localhost:3333/demonstrativos', {params: {id: id}}).then((dados) => {
+export function pegarDespesasPorId(id){
+    return axios.get('http://localhost:3333/despesas', {params: {id: id}}).then((dados) => {
       const array = dados.data.map((e) => {
         e = trocarValorKey('dt_atendimento', 'data', e);
         e = trocarValorKey('ds_credenciado', 'credenciado', e);
