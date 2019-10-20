@@ -60,7 +60,10 @@
 </template>
 
 <script>
-import TabelaDemonstrativo from "./components/TabelaDemonstrativo";
+import TabelaDemonstrativo from './components/TabelaDemonstrativo';
+
+import { pegarBeneficiarios } from './services/beneficiarios.service';
+import { pegarDemonstrativosPorId } from './services/demonstrativos.service';
 
 export default {
   name: "app",
@@ -82,8 +85,8 @@ export default {
       ],
       items: [],
       options: [
-        { value: "joao", text: "João" },
-        { value: "maria", text: "Maria" },
+        // { value: "joao", text: "João" },
+        // { value: "maria", text: "Maria" },
       ],
       showCollapse: true,
       show: true,
@@ -144,7 +147,7 @@ export default {
     },
     listarDespesas(pessoa) {
       this.items = [];
-      this.pegarDespesas(pessoa).map(e => this.items.push(e));
+      pegarDemonstrativosPorId(pessoa).then((dados) => dados.map(e => this.items.push(e)));
     },
     pegarDespesas(pessoa) {
       switch (pessoa) {
@@ -169,10 +172,14 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    }
+    },
+
   },
   components: {
     TabelaDemonstrativo
+  },
+  mounted: function () {
+    pegarBeneficiarios().then((dados) => this.options = dados);
   }
 };
 </script>
