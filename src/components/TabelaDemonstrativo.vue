@@ -1,8 +1,11 @@
 <template>
+<b-container>
     <b-table :responsive="true" striped hover :items="items">
     <template v-slot:cell(data)="data">{{ formatDate(data) }}</template>
     <template v-slot:cell(valor)="valor">{{'R$ ' +formatValor(valor) }}</template>
   </b-table>
+  <div v-if="total() != 0">Valor Total: R$ {{total()}}</div>
+  </b-container>
 </template>
 
 <script>
@@ -38,6 +41,9 @@ export default {
     },
     formatValor(valor){
       return valor.value;
+    },
+    total(){
+      return this.items.reduce((acc, e) => acc + e.valor,0);
     }
   }
 };

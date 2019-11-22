@@ -6,7 +6,7 @@ import { trocarValorKey } from './utils.service';
  * @returns {Promise} Uma Promise com um array de beneficiários
  */
 export function pegarBeneficiarios(){
-    return axios.get('http://localhost:3333/beneficiarios').then((dados) => {
+    return axios.get('http://teamb2019-com.umbler.net/beneficiarios').then((dados) => {
       const array = dados.data.map((e) => {
         e = trocarValorKey('nr_matricula', 'value', e);
         e = trocarValorKey('nm_beneficiario', 'text', e);

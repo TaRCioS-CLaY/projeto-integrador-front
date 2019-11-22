@@ -6,7 +6,7 @@ import { trocarValorKey } from './utils.service';
  * @returns {Promise} Uma Promise com um array de despesas
  */
 export function pegarTodasDespesas(){
-    return axios.get('http://localhost:3333/despesas').then((dados) => {
+    return axios.get('http://teamb2019-com.umbler.net/despesas').then((dados) => {
       const array = dados.data.map((e) => {
         e = trocarValorKey('dt_atendimento', 'data', e);
         e = trocarValorKey('ds_credenciado', 'beneficiario', e);
@@ -24,7 +24,7 @@ export function pegarTodasDespesas(){
  * @returns {Promise} Uma Promise com um array de despesas
  */
 export function pegarDespesasPorId(id){
-    return axios.get('http://localhost:3333/despesas', {params: {id: id}}).then((dados) => {
+    return axios.get('http://teamb2019-com.umbler.net/despesas', {params: {id: id}}).then((dados) => {
       const array = dados.data.map((e) => {
         e = trocarValorKey('dt_atendimento', 'data', e);
         e = trocarValorKey('ds_credenciado', 'credenciado', e);
