@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { trocarValorKey } from './utils.service';
-const enderecoApi = process.env.API || 'http://teamb2019-com.umbler.net';
+const enderecoApi = process.env.API || 'https://teamb2019-com.umbler.net';
 /**
  * Pega todos os beneficiários da base
  * @returns {Promise} Uma Promise com um array de beneficiários
