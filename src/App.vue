@@ -143,11 +143,13 @@ export default {
       });
     },
     imprimir(){
-      this.praImprimir = document.getElementById('jumbo').innerHTML;
-      let janelaImpressao = this.janela.open();      
-      janelaImpressao.document.write(`<div v-html="${this.praImprimir}</div>`);
-      janelaImpressao.print();
-      janelaImpressao.close();
+    //this.praImprimir = document.getElementById('jumbo').innerHTML;
+    //let janelaImpressao = this.janela.open();      
+    //janelaImpressao.document.write(`<div v-html="${this.praImprimir}</div>`);
+    //janelaImpressao.print();
+    //janelaImpressao.close();
+      print();
+
     },
 
   },
